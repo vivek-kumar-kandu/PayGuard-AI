@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO -->
+    <meta name="description" content="PayGuard AI is an AI-powered Online Payment Fraud Detection System built using Machine Learning and Flask.">
+
+    <meta name="author" content="Vivek Kumar Kandu">
+
+    <meta name="keywords" content="PayGuard AI, Fraud Detection, Machine Learning, Flask, Online Payment, AI">
+
+    <!-- Website Title -->
+    <title>PayGuard AI | Online Payment Fraud Detection</title>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>PayGuard AI</h1>
+
+        <p>
+            AI-Powered Online Payment Fraud Detection System
+        </p>
+
+    </header>
+
+    <form action="/predict" method="POST" autocomplete="off">
+
+        <!-- Row 1 -->
+        <div class="form-row">
+
+            <div class="input-group">
+                <label for="step">Transaction Step</label>
+                <input
+                    type="number"
+                    id="step"
+                    name="step"
+                    placeholder="Enter Transaction Step"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="type">Transaction Type</label>
+
+                <select id="type" name="type" required>
+                    <option value="">Select Transaction Type</option>
+                    <option value="CASH_IN">CASH_IN</option>
+                    <option value="CASH_OUT">CASH_OUT</option>
+                    <option value="DEBIT">DEBIT</option>
+                    <option value="PAYMENT">PAYMENT</option>
+                    <option value="TRANSFER">TRANSFER</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-row">
+
+            <div class="input-group">
+                <label for="amount">Transaction Amount</label>
+                <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    placeholder="Enter Transaction Amount"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="oldbalanceOrg">Sender Balance Before</label>
+                <input
+                    type="number"
+                    id="oldbalanceOrg"
+                    name="oldbalanceOrg"
+                    placeholder="Enter Sender Balance Before"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+            </div>
+
+        </div>
+
+        <!-- Row 3 -->
+        <div class="form-row">
+
+            <div class="input-group">
+                <label for="newbalanceOrig">Sender Balance After</label>
+                <input
+                    type="number"
+                    id="newbalanceOrig"
+                    name="newbalanceOrig"
+                    placeholder="Enter Sender Balance After"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="oldbalanceDest">Receiver Balance Before</label>
+                <input
+                    type="number"
+                    id="oldbalanceDest"
+                    name="oldbalanceDest"
+                    placeholder="Enter Receiver Balance Before"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+            </div>
+
+        </div>
+
+        <!-- Row 4 -->
+        <div class="form-row">
+
+            <div class="input-group full-width">
+                <label for="newbalanceDest">Receiver Balance After</label>
+                <input
+                    type="number"
+                    id="newbalanceDest"
+                    name="newbalanceDest"
+                    placeholder="Enter Receiver Balance After"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+            </div>
+
+        </div>
+        <div class="button-group">
+    <button type="submit">
+        Analyze Transaction
+    </button>
+</div>
+
+</form>
+
+{% if prediction %}
+
+<div class="result-card {{ card_class }}">
+
+    <h2>{{ prediction }}</h2>
+
+    <p>
+    <strong>Model Confidence:</strong>
+    {{ confidence }}%
+    </p>
+
+</div>
+
+{% endif %}
+
+</div>
+    
+</body>
+</html>

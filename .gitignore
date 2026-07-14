@@ -1,0 +1,16 @@
+# Dataset
+dataset/*.csv
+
+# Trained Models
+model/*.pkl
+
+# Generated Reports
+reports/*.png
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Virtual Environment
+venv/
+.env
