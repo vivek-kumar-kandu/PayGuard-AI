@@ -1,8 +1,6 @@
 # Dataset
 dataset/*.csv
 
-# Trained Models
-model/*.pkl
 
 # Generated Reports
 reports/*.png
